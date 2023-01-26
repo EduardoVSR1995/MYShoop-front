@@ -1,31 +1,28 @@
-import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { Form, Input } from "./StyleForms";
 
-export default function Forms() {
+export default function Forms({ signin, setForm }) {
+  if(!signin) {  
+    return(
+      <Form onSubmit={ (e) => setForm(e) }>
+        <Input placeholder="Url da foto" />
+        <Input placeholder="Nome" />
+        <Input placeholder="E-mail" />
+        <Input placeholder="Senha"/>
+        <Input placeholder="Confirme a senha" />
+        <button>Criar conta</button>
+        <Link to="/sign-in" >Log in</Link> 
+
+      </Form>
+    );
+  };
   return(
-    <Form>
-      <Input></Input>
-      <Input></Input>
-      <Input></Input>
-      <Input></Input>
-      <Input></Input>
+    <Form onSubmit={ (e) => setForm(e) }>
+      <Input placeholder="E-mail" />
+      <Input placeholder="Senha"/>
+      <button>Entrar</button>
+      <Link to="/sign-up" >Criar conta</Link> 
     </Form>
-  );  
+  );
 };
-
-const Form = styled.form`
-  margin-top: 30px ;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100vw;
-`;
-
-const Input = styled.input`
-  margin: 10px 0px 10px 0px ;
-  width: 70vh;
-  height: 35px;
-  border-radius: 10px;
-  background: #C8C8F4;
-`;
 
