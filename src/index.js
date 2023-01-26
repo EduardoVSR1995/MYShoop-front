@@ -5,9 +5,8 @@ import App from "./App";
 import "./assets/styles/reset.css";
 import "react-toastify/dist/ReactToastify.css";
 
-
 ReactDOM.render(
-    <App />,
-    document.querySelector(".root")
-  );
-  
+  <App />,
+  document.querySelector(".root")
+);
+
