@@ -65,7 +65,7 @@ input{
 
 const SalesArea = styled.span`
 margin: 150px 20px 20px 20px ;
-width: 100% ;
+width: 80% ;
 display: flex;
 align-items: flex-start ;
 justify-content: center;

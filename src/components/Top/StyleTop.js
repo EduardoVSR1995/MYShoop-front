@@ -23,7 +23,7 @@ const Top = styled.div`
   align-items: center ;
   justify-content: space-evenly;
   height: 39px;
-  width: 100vw ;
+  width: 99vw ;
   div{
     margin-top: 0px;
     width: 20vw ;
