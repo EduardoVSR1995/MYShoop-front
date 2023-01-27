@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const UserBox = styled.h1`
-  width: 16vw;
+  width: 150px;
   display: flex;
   align-items: center ;
   justify-content: space-around;  
@@ -14,6 +14,8 @@ const UserBox = styled.h1`
 `;
 
 const Top = styled.div`
+  background-color: #FFFFFF ;
+  z-index: 1 ;
   position: fixed;
   top:0px;
   padding: 25px 25px 25px 0px;

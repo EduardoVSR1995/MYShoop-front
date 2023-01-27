@@ -5,6 +5,7 @@ import SigsForm from "./pages/SigsForm";
 
 import { UserProvider } from "./contexts/UserContext";
 import Layout from "./pages/Layout";
+import ProductUser from "./pages/ProductUser";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
             <Route path="/" element={<Layout />} />
             <Route path="/sign-in" element={<SigsForm signin={true} />} />
             <Route path="/sign-up" element={<SigsForm />} />
+            <Route path="/product" element={<ProductUser />} />
           </Routes>
         </Router>
       </UserProvider>
