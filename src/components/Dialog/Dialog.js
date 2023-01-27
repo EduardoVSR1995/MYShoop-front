@@ -19,6 +19,9 @@ const AllBox = styled.span`
 `;
 
 const ComandBox = styled.span`
+    display: flex ;
+    justify-content: center ;
+    align-items:center ;
     z-index: 3;
     position: absolute ;
     width: 80vw ;

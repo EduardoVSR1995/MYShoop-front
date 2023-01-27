@@ -6,7 +6,10 @@ align-items: center;
 justify-content: center;
 flex-wrap: wrap;
 width: 100vw;
-
+h1{
+  margin: 20px 0px 0px 0px;
+  font-size: 20px;
+}
 button{
   color: #FFFFFF ;
   margin: 20px 0px 0px 0px ;

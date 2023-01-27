@@ -1,14 +1,12 @@
-import styled from "styled-components";
 import Top from "../../components/Top/Top";
 import SalesArea from "../../components/SalesArea/Sales";
 import { TopProduct } from "../../components/SalesArea/StyleSalesArea";
 
-export default function ProductUser() {  
-  const nameShoop = "MyShoop";
+export default function Product() {
   return(
     <>
-      <TopProduct>  
-        <Top />     
+      <TopProduct>
+        <Top to={"/"} />
       </TopProduct>
       <SalesArea/>
     </>

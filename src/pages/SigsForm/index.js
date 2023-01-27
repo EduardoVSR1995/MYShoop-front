@@ -1,4 +1,4 @@
-import Forms from "../../components/Forms/Forms";
+import { Forms } from "../../components/Forms/Forms";
 import Bar from "../../components/Bar/Bar";
 import { Link } from "react-router-dom";
 

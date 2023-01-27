@@ -3,16 +3,25 @@ import { Box } from "../Products/StyleProducts";
 import { Dialog } from "../Dialog/Dialog";
 import { Apresentation, SalesArea, EnvPrice, Quantiti } from "./StyleSalesArea";
 import { useState } from "react";
+import { FormDialog } from "../Forms/Forms";
  
 export default function Sales() {  
   const [ dialog, setDialog ] = useState();
 
+  function DialogBox() {
+    if( !dialog ) {
+      return;
+    };
+    return (
+      <Dialog setDialog={ setDialog } >
+        <FormDialog/>
+      </Dialog> 
+    );
+  };
+
   return(
     <>
-      {dialog ? <Dialog setDialog={setDialog} >
-        
-      </Dialog> :
-        ""}
+      <DialogBox />
       <SalesArea>
         <Box></Box>
         <Apresentation>
@@ -33,7 +42,7 @@ export default function Sales() {
           <EnvPrice>
             <h2>
             R$400,00 Seu produto chegara em 5 dias
-              <button onClick={ () => setDialog(true) }>
+              <button onClick={ () => { setDialog(true); } }>
                 Finalizar compra
               </button>
             </h2>
