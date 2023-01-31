@@ -25,7 +25,7 @@ const ComandBox = styled.span`
     z-index: 3;
     position: absolute ;
     width: 80vw ;
-    height: 80vh; 
+    height: 85vh; 
     border-radius: 20px ;
     background: #FFFFFF ;
 `;

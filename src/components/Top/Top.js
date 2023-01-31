@@ -4,26 +4,28 @@ import search from "../../assets/images/search.png";
 import { Top, UserBox } from "./StyleTop";
 import { Link } from "react-router-dom";
 
-export default function Toop({ to }) {  
-  const nameShoop = "MyShoop";
-  const name = "dudu";
+import { shopName } from "../../services/api";
+import UserContext from "../../contexts/UserContext";
+import { useContext } from "react";
 
+export default function Toop({ to }) { 
+  const { userData } = useContext(UserContext);
   return(
     <>
       <Top>
-        <Link to={to}>
+        <Link to={ to ? shopName+"/"+to : shopName }>
           <Bar>
-            {nameShoop}
+            {shopName?.replace(/\//g, "")}
           </Bar>
         </Link>  
         <span>
           <Input />
           <img src={search}/>
         </span>
-        <Link to={"/user"} >
-          <UserBox>
-            {name}
-            <img src="https://lh3.googleusercontent.com/ogw/AAEL6sg1I7IEWU2qlQHfNZcz0SiJ4oSa6lZcrCBCta7EpQ=s32-c-mo"/>
+        <Link to={userData.name ? shopName+"/user" : shopName+"/sign-in" } >
+          <UserBox >
+            {userData.name ? userData.name : "Login" }
+            <img src={userData.urlImage ? userData.urlImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRNEelTlk7s95SyQHFW1aktkzWR6-M8MwOOg&usqp=CAU"}/>
           </UserBox>
         </Link>
       </Top>

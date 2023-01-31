@@ -6,7 +6,7 @@ export default function User() {
   return(
     <>
       <TopProduct>
-        <Top to={"/"} />
+        <Top />
       </TopProduct>
       <UserArea />
     </>

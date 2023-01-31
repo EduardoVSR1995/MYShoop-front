@@ -8,18 +8,25 @@ import Layout from "./pages/Layout";
 import Product from "./pages/Product";
 import User from "./pages/User";
 
-export default function App() {
+export default function App({ name }) {
   return (
     <>
       <ToastContainer />
       <UserProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<Layout />} />
-            <Route path="/sign-in" element={<SigsForm signin={true} />} />
-            <Route path="/sign-up" element={<SigsForm />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/user" element={<User />} />
+            {name.map(({ nameStore }) => { 
+              return(
+                <>
+                  <Route path={`/${nameStore}`} element={<Layout />} />
+                  <Route path={`/${nameStore}/sign-in`} element={<SigsForm params={"signin"}/>} />
+                  <Route path={`/${nameStore}/sign-up`} element={<SigsForm params={"signup"}/>} />
+                  <Route path={`/${nameStore}/product/:id`} element={<Product />} />
+                  <Route path={`/${nameStore}/user`} element={<User />} />   
+                </>
+              );
+            })
+            }
           </Routes>
         </Router>
       </UserProvider>

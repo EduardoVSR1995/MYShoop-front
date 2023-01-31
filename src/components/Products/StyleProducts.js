@@ -5,16 +5,38 @@ const Products = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly ;
   margin-top: 30px;
-  
 `;
 
+const BoxImage = styled.div`
+  display: flex; 
+  width: 20vw;
+  overflow: scroll;
+  div{
+    img{
+    height: 100%;
+  }
+    div{
+      width: 0px ;
+    }
+  }
+  
+`;
 const Box = styled.div`
-  background: blue;
   margin: 0px 5px 10px 5px  ;
-  width: 195px;
-  height: 300px;
+  width: 20vw;
+  height: 40vh;
   border-radius: 15px ;
-  
+  border: 1px solid #6666F0 ;
+  img{
+    border-radius: 15px ;
+    width: 20vw;
+    height: 80%;
+  }
+  div{
+    margin: 5px ;
+    height: 20%;
+    overflow: auto ;
+  }
 `;
 
-export { Products, Box };
+export { Products, Box, BoxImage };

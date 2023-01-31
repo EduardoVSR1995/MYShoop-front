@@ -22,7 +22,7 @@ h2{
   align-items: center ;
   justify-content: center ;
   button{
-      width:30% ;
+      width:40% ;
   }
 }  
 `;

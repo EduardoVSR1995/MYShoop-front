@@ -1,16 +1,16 @@
-import { Forms } from "../../components/Forms/Forms";
+import Forms from "../../components/Forms/Forms";
 import Bar from "../../components/Bar/Bar";
 import { Link } from "react-router-dom";
 
-export default function SigsForm({ signin }) {
-  const nameShoop = "MyShoop";
-  
+import { shopName } from "../../services/api";
+
+export default function SigsForm({ params }) {
   return(
     <>
-      <Link to={"/"}>
-        <Bar>{ nameShoop }</Bar>
+      <Link to={ shopName }>
+        <Bar>{ shopName.replace(/\//g, "") }</Bar>
       </Link>
-      <Forms signin={ signin } />
+      <Forms params={ params } />
     </>
   );
 };
