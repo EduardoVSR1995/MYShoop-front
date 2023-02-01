@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ProductContext from "../../contexts/ProductContext";
 
 import { shopName } from "../../services/api";
-import { getProducts } from "../../services/useProduct";
 import { Products, Box } from "./StyleProducts";
 
 export default function Product() {
-  const [ product, setProduct ] = useState();
-  const navigat = useNavigate();
+  const { productData, SetProductData } = useContext(ProductContext);
 
+  const navigat = useNavigate();
+  
   useEffect(() => {
-    getProducts()
-      .then((value) => setProduct(value))
-      .catch((value) => console.error(value));  
+    const i = productData?.data ? "": SetProductData();  
   }, []);
 
   return(
     <>
       <Products>
         { 
-          product ? 
-            product.map( (i) => {
+          productData?.data ? 
+            productData.data.map( (i) => {
               return(
                 <Box key={i.id} onClick={() => navigat(`${shopName}/product/${i.id}`)}>
                   <img src={i.UrlImage[0].urlImage}/>

@@ -19,7 +19,7 @@ export default function Adverti() {
           .then((value) => setProduct({ ...product, list: i, advertising: value }))
           .catch((erro) => console.error(erro));
       })
-      .catch((i) => console.log(i));
+      .catch((i) => console.error(i));
   }, []);
   const navigat = useNavigate();
   return(
@@ -29,28 +29,32 @@ export default function Adverti() {
           <div>{ product?.list.length ? product?.list.length : 0   }</div>
           <img src={cesto}/>
         </Basket>
-        { product?.advertising.length > 0 ? product.advertising.map((value) => {
-          return(
-            <span>
-              <h1>{value.text}
-                <h2>
-                  {value.Product.description}
-                </h2>
-                <Link to={shopName+"/product/"+value.productId}>
-                  <Bar>Saiba mais</Bar>  
-                </Link>
-              </h1>
-              <div>
-                <img src={value.Product.UrlImage[0].urlImage}/>     
-              </div>
-            </span>);
-        }) : 
-          <span>
-            <h1>
-              Coloque sua propaganda aqui !!
-            </h1>
-          </span>
-        }
+        <div className={"merchan"}>
+          { 
+            product?.advertising.length > 0 ? product.advertising.map((value) => {
+              return(
+                <span>
+                  <h1>{value.text}
+                    <h2>
+                      {value.Product.description}
+                    </h2>
+                    <Link to={shopName+"/product/"+value.productId}>
+                      <Bar>Saiba mais</Bar>  
+                    </Link>
+                  </h1>
+                  <div>
+                    <img src={value.Product.UrlImage[0].urlImage}/>     
+                  </div>
+                </span>
+              );
+            }) : 
+              <span>
+                <h1>
+                  Coloque sua propaganda aqui !!
+                </h1>
+              </span>
+          }
+        </div>
       </Advertising>
     </>
   );

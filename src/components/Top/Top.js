@@ -2,14 +2,18 @@ import Bar from "../../components/Bar/Bar";
 import { Input } from "../../components/Forms/StyleForms";
 import search from "../../assets/images/search.png";
 import { Top, UserBox } from "./StyleTop";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { shopName } from "../../services/api";
 import UserContext from "../../contexts/UserContext";
 import { useContext } from "react";
+import ProductContext from "../../contexts/ProductContext";
 
 export default function Toop({ to }) { 
   const { userData } = useContext(UserContext);
+  const { productData, SetProductData, setProductData } = useContext(ProductContext);
+  const navigate = useNavigate();
+  console.log(productData);
   return(
     <>
       <Top>
@@ -19,8 +23,8 @@ export default function Toop({ to }) {
           </Bar>
         </Link>  
         <span>
-          <Input />
-          <img src={search}/>
+          <Input onChange={ e => { e.target.value !== "" ? setProductData({ ...productData, string: e.target.value }) : SetProductData(); }} />
+          <img onClick={() => { SetProductData({ ...productData, search: productData.string }); navigate(shopName); } } src={search}/>
         </span>
         <Link to={userData.name ? shopName+"/user" : shopName+"/sign-in" } >
           <UserBox >

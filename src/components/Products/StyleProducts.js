@@ -34,7 +34,7 @@ const Box = styled.div`
   }
   div{
     margin: 5px ;
-    height: 20%;
+    height: 15%;
     overflow: auto ;
   }
 `;

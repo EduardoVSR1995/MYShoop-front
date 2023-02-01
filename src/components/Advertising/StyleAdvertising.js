@@ -28,10 +28,17 @@ const Basket = styled.div`
 `;
 
 const Advertising = styled.div`
-  margin: 200px 20px 20px 20px ;
+  margin: 130px 0px 130px 20px ;
+  
+  .merchan{
+    overflow: scroll;
+    display: flex;
+    width: 100%;
+    width: 100% ;
+    
 
   span{
-    height: 30vh ;
+    width: 100vw !important ;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,11 +48,10 @@ const Advertising = styled.div`
       font-style: normal;
       font-weight: 600;
       font-size: 30px;
-      line-height: 36px;
       margin: 20px ;
       height: 90% ;
-      width: 50%;  
-      div{
+      width: 100%;  
+      > div{
         height: 50px ;
       }
     }
@@ -54,20 +60,20 @@ const Advertising = styled.div`
       font-style: normal;
       font-weight: 400;
       font-size: 30px;
-      line-height: 36px;
       color: #7E7E7E;
     }
-    div{
+    > div{
       height: 100% ;
-      width: 50%;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-evenly;
       
       img{
       max-height: 100% ;
-      width: 400px;
+      width: 15vw;
     }
+  }
     }
   }
 `;
