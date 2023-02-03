@@ -39,8 +39,8 @@ export default function Sales({ type, load }) {
       return;
     };
     return (
-      <Dialog setDialog={setDialog} >
-        <FormDialog params={"dialog"} />
+      <Dialog setDialog={setDialog} load={load} >
+        <FormDialog params={"dialog"} type={type}/>
       </Dialog>
     );
   };

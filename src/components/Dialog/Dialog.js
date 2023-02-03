@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import UserContext from "../../contexts/UserContext";
 
-export function Dialog({ setDialog, children }) {
+export function Dialog({ setDialog, children, load }) {
+  const { userData } = useContext(UserContext);
+  
   return (
     <AllBox>
-      <DialogBox onClick={() => setDialog("")} />
+      <DialogBox onClick={() => { setDialog(""); load(userData.token);}} />
       <ComandBox >
         {children}
       </ComandBox>

@@ -21,6 +21,20 @@ h2{
   flex-wrap: wrap;
   align-items: center ;
   justify-content: center ;
+  h3{
+    margin-top: 50px ;
+    display: flex;
+    width : 500px ;
+    align-items: center ;
+    justify-content: center ;
+    
+    img{
+      width: 30% ;
+    }
+    button{
+      width:40% ;
+    }
+  }
   button{
       width:40% ;
   }

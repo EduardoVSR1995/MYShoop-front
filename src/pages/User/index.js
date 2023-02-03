@@ -3,32 +3,49 @@ import { TopProduct } from "../../components/SalesArea/StyleSalesArea";
 import Sales from "../../components/SalesArea/Sales";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";
-import { cart } from "../../services/useGetInfos";
+import { cart, cartPayd } from "../../services/useGetInfos";
+import PaydArea from "../../components/PaydArea/PaydArea";
+import ProductContext from "../../contexts/ProductContext";
 
 export default function User() {
-  const [ product, setProduct ] = useState();
+  const [product, setProduct] = useState({ cart: [], cartPayd: [] });
   const { setValue } = useContext(UserContext);
-
+  const { productData, setProductData } = useContext(ProductContext);
+ 
+  function load(token) {
+    console.log(token);
+    cart(token)
+      .then((value) => {
+        console.log(value);      
+        cartPayd(token)
+          .then((i) => {
+            setProduct({ ...product, cart: [ ...value ], cartPayd: [ ...i.arr ], phone: value.phone });
+          })
+          .catch((i) => console.error(i));
+      })
+      .catch((i) => console.log(i));
+  }    
   useEffect(() => {
     const { token } = setValue();
-    load(token);  
+    setProductData({ ...productData, load });
+    load(token);
   }, []);
-  function load(token) {
-    const select = cart(token)
-      .then((value) => { 
-        setProduct([ ...value ]); 
-      })
-      .catch((i) => console.error(i));
-  }
-  return(
+  return (
     <>
       <TopProduct>
         <Top />
-      </TopProduct>
-      {  
-        product ? product.map((i, index) => { return <Sales key={index} type={i.ProductId} load={load} />;}) 
-          : 
-          "Você ainda não colocou nada no carrinho!"
+      </TopProduct> 
+      {
+        product.cartPayd.length > 0 ?
+          product.cartPayd.map((i, index) => { return <PaydArea key={index} type={i.ProductId} oneProduct={{ ...i, phone: product.phone }} />; })
+          :
+          ""
+      }
+      {
+        product.cart.length > 0 ?
+          product.cart.map((i, index) => { return <Sales key={index} type={i.ProductId} load={load} />; })
+          :
+          ""
       }
     </>
   );
