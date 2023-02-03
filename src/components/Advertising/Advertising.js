@@ -2,18 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import cesto from "../../assets/images/cesto.png";
 import Bar from "../Bar/Bar";
 import { Advertising, Basket } from "./StyleAdvertising";
-import { advertisingGet, card } from "../../services/useGetInfos"; 
+import { advertisingGet, cart } from "../../services/useGetInfos"; 
 import UserContext from "../../contexts/UserContext";
 import { shopName } from "../../services/api";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Adverti() {  
-  const { setValue, userData } = useContext(UserContext);
+  const { setValue } = useContext(UserContext);
   const [product, setProduct] = useState();
   
   useEffect(() => { 
     const value = setValue();
-    card(value?.token)
+    cart(value?.token)
       .then((i) => {
         advertisingGet()
           .then((value) => setProduct({ ...product, list: i, advertising: value }))

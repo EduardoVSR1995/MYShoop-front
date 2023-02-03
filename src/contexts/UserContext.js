@@ -20,6 +20,8 @@ export function UserProvider({ children }) {
       window.localStorage.setItem(local, JSON.stringify(value));
       setUserData({ ...userData, ...value });
     }
+    console.log(item);
+    setUserData({ ...JSON.parse(item) });
     return { ...userData };
   }
 

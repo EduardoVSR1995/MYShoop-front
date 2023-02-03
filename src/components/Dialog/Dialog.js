@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export function Dialog({ setDialog, children }) {
-  return(
+  return (
     <AllBox>
-      <DialogBox onClick={ () => setDialog("") }/>
+      <DialogBox onClick={() => setDialog("")} />
       <ComandBox >
         {children}
       </ComandBox>
-    </AllBox> 
+    </AllBox>
   );
 };
 
@@ -25,7 +25,7 @@ const ComandBox = styled.span`
     z-index: 3;
     position: absolute ;
     width: 80vw ;
-    height: 85vh; 
+    height: 70%; 
     border-radius: 20px ;
     background: #FFFFFF ;
 `;

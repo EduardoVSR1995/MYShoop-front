@@ -5,8 +5,9 @@ export async function postCart(id, quantiti, token) {
     { method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify({ id: id, quantiti: quantiti }) });
+  console.log(response);
   return response;
 }

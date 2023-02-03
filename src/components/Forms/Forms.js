@@ -6,22 +6,36 @@ import { Form, Input } from "./StyleForms";
 import { shopName } from "../../services/api";
 import { toast } from "react-toastify";
 import { signUp, signin } from "../../services/userApi";
+import ProductContext from "../../contexts/ProductContext";
+import { paydPix } from "../../services/usePay";
 
 export default function Forms({ params }) {
   const [ forms, setForms ] = useState({ });
   const { setValue, userData } = useContext(UserContext);  
+  const { productData } = useContext(ProductContext);
 
+  console.log(userData, productData);
   const navigate = useNavigate();
 
   async function form(e, forms) {
     e.preventDefault();
-    
-    if( forms.notPas ) return alert("As senhas tem que ser iguais");
-  
+      
     try {
       let user;
+
       if(params === "dialog") { 
-        
+        const imgPix = await paydPix(
+          userData.token, 
+          productData.id, 
+          productData.cont, 
+          forms.fone, 
+          forms.street, 
+          forms.city, 
+          forms.homeNumber, 
+          forms.cep
+        );
+        const valid = imgPix.imgQrcod ? setForms({ ...forms, imgQrcod: imgPix.imgQrcod }) : "";  
+        return;
       }
       if(params === "signin") { 
         user = await signin(forms.email, forms.password);
@@ -60,23 +74,19 @@ export default function Forms({ params }) {
 
   if(params === "dialog") { 
     return(
-      <Form onSubmit={ e => form(e, forms) }>
-        <Input required maxLength={8} placeholder="cep" onChange={ e => setForms({ ...forms, cep: e.target.value })} />
-        <Input required placeholder="Cidade" onChange={ e => setForms({ ...forms, city: e.target.value })}/>
-        <Input required placeholder="Nome da rua" onChange={ e => setForms({ ...forms, street: e.target.value })}/>
-        <Input required placeholder="Numero da casa" onChange={ e => setForms({ ...forms, homeNumber: e.target.value })}/>
-        <Input required placeholder="Nome no cartão" onChange={ e => setForms({ ...forms, cardName: e.target.value })}/>
-        <Input required placeholder="Numero do cartão" onChange={ e => setForms({ ...forms, cardNumber: e.target.value })}/>
-        <Input required placeholder="data de validade" onChange={ e => setForms({ ...forms, validDate: e.target.value })}/>
-        <Input required maxLength={3} placeholder="cvv" onChange={ e => setForms({ ...forms, cvv: e.target.value })}/>
-        <Input required placeholder="Bandeira" list="bandeira" onChange={ e => setForms({ ...forms, flag: e.target.value })}/>
-        <datalist id="bandeira">
-          <option value={"Master"}>Master</option>
-          <option value={"Visa"}>Visa</option>
-        </datalist>
-        <h1>Total do pedido R$ 400,00 </h1>
-        <button type={"submit"}>Finalizar compra</button>
-      </Form>  
+      forms.imgQrcod? 
+        <img src={forms.imgQrcod}/>
+        :
+        <Form onSubmit={ e => form(e, forms) }>
+          <Input required maxLength={8} placeholder="cep" onChange={ e => setForms({ ...forms, cep: e.target.value })} />
+          <Input required placeholder="Cidade" onChange={ e => setForms({ ...forms, city: e.target.value })}/>
+          <Input required placeholder="Nome da rua" onChange={ e => setForms({ ...forms, street: e.target.value })}/>
+          <Input required placeholder="Numero da casa" onChange={ e => setForms({ ...forms, homeNumber: e.target.value })}/>
+          <Input required placeholder="Numero de telefone" onChange={ e => setForms({ ...forms, fone: e.target.value })}/>
+          <h1>Total do pedido R$ {(productData.price/100).toFixed(2)} </h1>
+          <button type={"submit"}>Finalizar compra</button>
+        </Form>  
+    
     );
   };
   

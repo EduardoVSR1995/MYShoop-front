@@ -1,6 +1,6 @@
 import { conect } from "./api";
 
-export async function card(token) {
+export async function cart(token) {
   const response = await conect("/product/cart", 
     { method: "GET",
       headers: {
@@ -21,7 +21,7 @@ export async function advertisingGet() {
   return response;
 }
 
-export async function getAllProduct(id) {
+export async function getOneProduct(id) {
   const response = await conect(`/product/id/${id}`, 
     { method: "GET",
       headers: {

@@ -70,10 +70,9 @@ display: flex;
 align-items: flex-start ;
 justify-content: center;
 
-
 `;
 
-const TopProduct = styled.div`
+const TopProduct = styled.span`
   div{
       top: 40px;
       background-color: #6666F0;
@@ -82,6 +81,11 @@ const TopProduct = styled.div`
           color: #FFFFFF ;
       }
   }
+  top: 0px;
+  width: 100vw;
+  height: 130px ;
+  background: #FFFFFF;
+  position: fixed;
 `;
 
 export { TopProduct, SalesArea, Apresentation, Quantiti, EnvPrice };
