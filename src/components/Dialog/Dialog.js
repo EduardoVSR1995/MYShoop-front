@@ -4,7 +4,7 @@ import UserContext from "../../contexts/UserContext";
 
 export function Dialog({ setDialog, children, load }) {
   const { userData } = useContext(UserContext);
-  
+
   return (
     <AllBox>
       <DialogBox onClick={() => { setDialog(""); load(userData.token);}} />
@@ -38,7 +38,7 @@ const DialogBox = styled.div`
     z-index:2 ;
     top: 0;
     position: absolute;
-    width: 100% ;
+    width: 100vw ;
     height: 100vh;
     background: #000000 ;
     opacity: 0.8 ;

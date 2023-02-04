@@ -78,4 +78,76 @@ const Advertising = styled.div`
   }
 `;
 
-export { Basket, Advertising };
+const Sub = styled.div`
+  margin: 100px 0px 30px 0px ;
+  background-color: #6666F0;
+  width: 200px;
+  height: 50px;
+  border-radius: 10px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+`;
+
+const BoxConfig = styled.div`
+  span{
+    width: 97vw ;
+    span{
+      top: 180px ;
+      left:0px ;
+      width: 300px ;
+      flex-wrap: wrap ;
+      align-items: flex-start ;
+      text-align: center ;
+      font-size: 20px ;
+      h1{
+        :hover{
+          background: grey ;
+          border-radius: 20px ; 
+        }
+        margin: 10px;
+        width: 100vw;
+      }
+      div{
+        opacity: 0;
+        left: 0px ;
+        position: fixed ;
+        
+      }
+      span{
+          left:300px ;
+          top: 180px;
+          position: inherit ;
+      
+          span{
+            top: 180px;
+            position: fixed ;
+            width: 75vw;
+            background: blue ;
+            right: 200px ;
+      
+            span{
+              background: green ;
+              width: 70vw ;
+              height: 70vh;
+              overflow: scroll ;
+            }
+            div{
+              width: 500px ;
+              height: 400px ;
+              opacity: 1;
+              left:300px;
+              background: red ;
+              > div{
+                height: 50px
+              }
+            }
+           overflow: auto ;
+          }
+        }
+    }
+  }  
+`;
+
+export { BoxConfig, Basket, Advertising, Sub };

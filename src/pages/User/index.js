@@ -13,17 +13,15 @@ export default function User() {
   const { productData, setProductData } = useContext(ProductContext);
  
   function load(token) {
-    console.log(token);
     cart(token)
       .then((value) => {
-        console.log(value);      
         cartPayd(token)
           .then((i) => {
             setProduct({ ...product, cart: [ ...value ], cartPayd: [ ...i.arr ], phone: value.phone });
           })
           .catch((i) => console.error(i));
       })
-      .catch((i) => console.log(i));
+      .catch((i) => console.error(i));
   }    
   useEffect(() => {
     const { token } = setValue();
