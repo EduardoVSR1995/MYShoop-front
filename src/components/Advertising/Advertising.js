@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import cesto from "../../assets/images/cesto.png";
 import Bar from "../Bar/Bar";
-import { Advertising, Basket, Sub, BoxConfig } from "./StyleAdvertising";
+import { Advertising, Basket, Sub, BoxConfig, BoxOwner } from "./StyleAdvertising";
 import { advertisingGet, cart } from "../../services/useGetInfos";
 import UserContext from "../../contexts/UserContext";
 import PrductContext from "../../contexts/ProductContext";
@@ -122,19 +122,19 @@ function Choise({ choise }) {
   if (choise === "remov") {
     console.log(productData);
     return (
-      <span>
+      <BoxOwner>
         {
           productData?.data ? 
             productData.data.map( (i) => {
               return(
                 <Box key={i.id} onClick={() => ""}>
-                  <img src={i.UrlImage[0].urlImage}/>
-                  <div>{i.name}</div>
+                  {i.UrlImage.map((r) => { return(<img src={r.urlImage}/>); })}
+                  <p>{i.name}</p>
                 </Box>
               );})
             : ""
         }    
-      </span>
+      </BoxOwner>
     );
   }
   return (

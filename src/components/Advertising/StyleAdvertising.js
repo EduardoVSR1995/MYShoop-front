@@ -118,36 +118,38 @@ const BoxConfig = styled.div`
       span{
           left:300px ;
           top: 180px;
-          position: inherit ;
-      
+          position: fixed ;
           span{
             top: 180px;
             position: fixed ;
             width: 75vw;
-            background: blue ;
             right: 200px ;
-      
-            span{
-              background: green ;
-              width: 70vw ;
-              height: 70vh;
-              overflow: scroll ;
-            }
-            div{
-              width: 500px ;
-              height: 400px ;
-              opacity: 1;
-              left:300px;
-              background: red ;
-              > div{
-                height: 50px
-              }
-            }
-           overflow: auto ;
           }
         }
     }
   }  
 `;
 
-export { BoxConfig, Basket, Advertising, Sub };
+const BoxOwner = styled.span`
+  height: 70vh ;
+  opacity: 1 ;
+  overflow: scroll ;
+  display: flex;
+  justify-content: space-between ;
+  div{
+    padding: 0px ;
+    opacity: 1 !important;
+    position: initial !important;
+    overflow: auto ;
+    width: 170px ;
+    display: initial ;
+    div{
+      opacity: 1 ;
+    }
+  }
+  p{
+    overflow: scroll;
+  }
+`;
+
+export { BoxOwner, BoxConfig, Basket, Advertising, Sub };
