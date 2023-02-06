@@ -41,3 +41,14 @@ export async function getOneProduct(id) {
     });
   return response;
 }
+
+export async function getProductPayd(token) {
+  const response = await conect("/payment/list", 
+    { method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    });
+  return response;
+}

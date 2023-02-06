@@ -101,6 +101,10 @@ const BoxConfig = styled.div`
       align-items: flex-start ;
       text-align: center ;
       font-size: 20px ;
+      form{
+        overflow: scroll ;
+        height: 98% ;
+      }
       h1{
         :hover{
           background: grey ;
@@ -133,9 +137,9 @@ const BoxConfig = styled.div`
 const BoxOwner = styled.span`
   height: 70vh ;
   opacity: 1 ;
-  overflow: scroll ;
+  overflow: scroll !important ;
   display: flex;
-  justify-content: space-between ;
+  justify-content: space-around ;
   div{
     padding: 0px ;
     opacity: 1 !important;

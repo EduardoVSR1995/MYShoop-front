@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import cesto from "../../assets/images/cesto.png";
 import Bar from "../Bar/Bar";
 import { Advertising, Basket, Sub, BoxConfig, BoxOwner } from "./StyleAdvertising";
-import { advertisingGet, cart } from "../../services/useGetInfos";
+import { advertisingGet, cart, getProductPayd } from "../../services/useGetInfos";
 import UserContext from "../../contexts/UserContext";
 import PrductContext from "../../contexts/ProductContext";
 import { shopName } from "../../services/api";
@@ -10,7 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { autorize } from "../../services/userApi";
 import { Dialog } from "../Dialog/Dialog";
 import { Form, Input } from "../Forms/StyleForms";
-import { Box, Products } from "../Products/StyleProducts";
+import { Box } from "../Products/StyleProducts";
+import { Area, Env } from "../EnvArea/EnvArea";
 
 export default function Adverti() {
   const { setValue } = useContext(UserContext);
@@ -22,18 +23,17 @@ export default function Adverti() {
       .then((i) => {
         advertisingGet()
           .then((v) =>
-            autorize(value?.token).then((va) => setProduct({ ...product, list: i, advertising: v, bar: va })))
+            autorize(value?.token).then((va) => { setProduct({ ...product, list: i, advertising: v, bar: va }); }))
           .catch((erro) => console.error(erro));
       })
       .catch((i) => console.error(i));
   }, []);
-  console.log(product);
-  const navigat = useNavigate();
 
+  const navigat = useNavigate();
   return (
     <>
       <Advertising>
-        {product?.bar ? <Config onClick={test} /> : ""}
+        {!product?.bar.name ? <Config onClick={test} /> : ""}
         <Basket onClick={() => navigat(shopName + "/user")} >
           <div>{product?.list.length ? product?.list.length : 0}</div>
           <img src={cesto} />
@@ -104,7 +104,10 @@ function Config() {
 }
 
 function Choise({ choise }) {
+  const [product, setProduct] = useState();
   const { productData } = useContext(PrductContext);
+  const { setValue } = useContext(UserContext);
+
   if (choise === "Insert") {
     return (
       <Form onSubmit={""} >
@@ -120,23 +123,56 @@ function Choise({ choise }) {
     );
   }
   if (choise === "remov") {
-    console.log(productData);
     return (
       <BoxOwner>
         {
-          productData?.data ? 
-            productData.data.map( (i) => {
-              return(
+          productData?.data ?
+            productData.data.map((i) => {
+              return (
                 <Box key={i.id} onClick={() => ""}>
-                  {i.UrlImage.map((r) => { return(<img src={r.urlImage}/>); })}
+                  {i.UrlImage.map((r) => { return (<img src={r.urlImage} />); })}
                   <p>{i.name}</p>
                 </Box>
-              );})
+              );
+            })
             : ""
-        }    
+        }
       </BoxOwner>
     );
   }
+
+  if (choise === "ProductEnv") {
+    useEffect(() => {
+      const { token } = setValue();
+      getProductPayd(token).then((i) => setProduct([...i])).catch((i) => console.log(i));
+    }, []);
+
+    return (
+      <Area>
+        {
+          product ? product.map((i) => {
+            return (
+              <Env>
+                <img src={i.Product.UrlImage[0].urlImage} />
+                <p>
+                  Produto:   {" " + i.Product.name} <br />
+                  Comprador: {" " + i.User.StoreUser[0].User.name}<br />
+                  Email:     {" " + i.User.StoreUser[0].User.email}<br />
+                  Cep:          {" " + i.User.StoreUser[0].User.Addres[i.User.StoreUser[0].User.Addres.length - 1].postOfficeCode}<br />
+                  Cidade:       {" " + i.User.StoreUser[0].User.Addres[i.User.StoreUser[0].User.Addres.length - 1].city}<br />
+                  Nome da rua:  {" " + i.User.StoreUser[0].User.Addres[i.User.StoreUser[0].User.Addres.length - 1].street}<br />
+                  Numero da casa:    {" " + i.User.StoreUser[0].User.Addres[i.User.StoreUser[0].User.Addres.length - 1].house}<br />
+                  Numero do telefone:{" " + i.User.StoreUser[0].User.Addres[i.User.StoreUser[0].User.Addres.length - 1].phone}<br />
+                </p>
+              </Env>
+            );
+          })
+            : "Ainda não a produtos para envio"
+        }
+      </Area>
+    );
+  }
+
   return (
     <>
 

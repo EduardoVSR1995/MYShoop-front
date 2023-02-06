@@ -1,15 +1,27 @@
 import styled from "styled-components";
 
 const UserBox = styled.h1`
-  width: 150px;
+  width: 250px;
   display: flex;
   align-items: center ;
-  justify-content: space-around;  
+  justify-content: center;  
   color: #7E7E7E;
-
+  
   img{
     border-radius: 50% ;
     height: 50px;
+  }
+  :hover{
+    .hiden{
+      display: flex;
+      align-items: flex-end ;
+      justify-content: center ;
+      height: 50px ;
+      width: 50px ;
+    }
+  }
+  .hiden{
+    display: none;
   }
 `;
 
@@ -59,4 +71,8 @@ const Top = styled.div`
 }
 `;
 
-export { UserBox, Top };
+const Logout = styled.div`
+ 
+`;
+
+export { Logout, UserBox, Top };

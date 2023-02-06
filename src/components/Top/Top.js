@@ -26,12 +26,13 @@ export default function Toop({ to }) {
           <Input onChange={ e => { e.target.value !== "" ? setProductData({ ...productData, string: e.target.value }) : SetProductData(); }} />
           <img onClick={() => { SetProductData({ ...productData, search: productData.string }); navigate(shopName); } } src={search}/>
         </span>
-        <Link to={userData.name ? shopName+"/user" : shopName+"/sign-in" } >
-          <UserBox >
+        <UserBox >
+          <Link to={userData.name ? shopName+"/user" : shopName+"/sign-in" } >
             {userData.name ? userData.name : "Login" }
             <img src={userData.urlImage ? userData.urlImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRNEelTlk7s95SyQHFW1aktkzWR6-M8MwOOg&usqp=CAU"}/>
-          </UserBox>
-        </Link>
+          </Link>
+          {userData.name ? <div className="hiden" onClick={ () => { window.localStorage.clear(); window.location.href=shopName; } }> Sair </div> : "" }
+        </UserBox>
       </Top>
     </>
   );

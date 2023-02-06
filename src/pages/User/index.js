@@ -28,6 +28,7 @@ export default function User() {
     setProductData({ ...productData, load });
     load(token);
   }, []);
+  console.log(product);
   return (
     <>
       <TopProduct>
