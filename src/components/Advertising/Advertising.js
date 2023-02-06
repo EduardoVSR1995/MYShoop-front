@@ -30,10 +30,11 @@ export default function Adverti() {
   }, []);
 
   const navigat = useNavigate();
+  console.log(product?.bar);
   return (
     <>
       <Advertising>
-        {!product?.bar.name ? <Config onClick={test} /> : ""}
+        {product?.bar ? <Config onClick={test} /> : ""}
         <Basket onClick={() => navigat(shopName + "/user")} >
           <div>{product?.list.length ? product?.list.length : 0}</div>
           <img src={cesto} />

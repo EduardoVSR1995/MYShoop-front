@@ -44,7 +44,8 @@ export default function Forms({ params, type }) {
         user = await signin(forms.email, forms.password);
       }
       if (params === "signup") {
-        user = await signUp(forms.url, forms.name, forms.email, forms.password);
+        if(!forms.name || !forms.url || !forms.email || !forms.password) throw Error;
+        user = await signUp( forms.name, forms.url, forms.email, forms.password);
       }
       setValue(user);
       navigate(shopName);
@@ -63,11 +64,11 @@ export default function Forms({ params, type }) {
   if (params === "signup") {
     return (
       <Form onSubmit={e => verifi(e, forms)}>
-        <Input required placeholder={"Url da foto"} onChange={e => setForms({ ...forms, url: e.target.value })} />
+        <Input required type={"text"} maxLength={254} placeholder={"Url da foto"} onChange={e => setForms({ ...forms, url: e.target.value })} />
         <Input required placeholder={"Nome"} onChange={e => setForms({ ...forms, name: e.target.value })} />
         <Input required type={"email"} placeholder={"E-mail"} onChange={e => setForms({ ...forms, email: e.target.value })} />
-        <Input required type={"password"} placeholder={"Senha"} onChange={e => setForms({ ...forms, password: e.target.value })} />
-        <Input required type={"password"} placeholder={"Confirme a senha"} onChange={(e) => setForms({ ...forms, confirmPassword: e.target.value })} />
+        <Input required minLength={6} type={"password"} placeholder={"Senha"} onChange={e => setForms({ ...forms, password: e.target.value })} />
+        <Input required minLength={6} type={"password"} placeholder={"Confirme a senha"} onChange={(e) => setForms({ ...forms, confirmPassword: e.target.value })} />
         <button type={"submit"} >Criar conta</button>
         <Link to={shopName + "/sign-in"} >Log in</Link>
       </Form>

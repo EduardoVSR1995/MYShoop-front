@@ -6,7 +6,8 @@ export async function signUp(name, urlImage, email, password) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ email: email, password: password, name: name, urlImage: urlImage, }) });
+      body: JSON.stringify({ email: email, password: password, name: name, urlImage: urlImage, }) 
+    });
   return response;
 }
 
@@ -21,11 +22,10 @@ export async function signin(email, password) {
 }
 
 export async function autorize(token) {  
-  const response = await conect("/user/autorize",
+  conect("/user/autorize",
     { method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,
       }
-    });
-  return response;
+    }).then((i) => { return i; }).catch( (i) => console.error(i) );
 }
