@@ -1,0 +1,8 @@
+dist
+node_modules
+.env*
+!.env.example
+yarn.lock
+.vscode
+coverage
+homologacao-432132-dudu.p12
